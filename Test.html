@@ -314,7 +314,7 @@
                 <div class="title">You are Amazing</div>
                 <div class="num">06</div>
                 <!-- <img src="/01.png" /> -->
-                <img src="/01.png" class="carousel-image" data-audio="/audio/06.mp3"/> <!-- Replace with your image and audio file -->
+                <img src="/01.png" class="carousel-image" data-audio="/audio/06.mp3"/> 
 
             </div>
         </div>
@@ -368,25 +368,30 @@
     
     </body>
 <script>
-  // Play different audio when clicking on carousel images
-// document.querySelectorAll('.carousel-image').forEach(image => {
-//     image.addEventListener('click', function() {
-//         const audioFile = this.getAttribute('data-audio');
-//         console.log("Audio file path: ", audioFile); // Debugging line
-//         if (audioFile) {
-//             const imageAudio = new Audio(audioFile);
-//             imageAudio.play().catch(error => console.error("Error playing audio:", error)); // Error handling
-//         } else {
-//             console.log('No audio file found');
-//         }
-//     });
-// });
 
-document.querySelectorAll('.carousel-image').forEach(image => {
+document.querySelectorAll('.carousel-item').forEach(image => {
     console.log("Setting up event listener for image:", image); // Debug line
+    const defaultAudioFile06 = '/audio/06.mp3'; // Default audio file path
     image.addEventListener('click', function() {
         console.log("Image clicked:", this); // Check if the click event fires
-        const audioFile = this.getAttribute('data-audio');
+        const audioFile = this.getAttribute('data-audio') || defaultAudioFile06;
+        if (audioFile) {
+            const imageAudio = new Audio(audioFile);
+            imageAudio.play().catch(error => console.error("Error playing audio:", error));
+        } else {
+            console.log('No audio file found');
+        }
+    });
+});
+
+// 0777777777777777777
+
+document.querySelectorAll('.carousel-item').forEach(image => {
+    console.log("Setting up event listener for image:", image); // Debug line
+    const defaultAudioFile07 = '/audio/07.mp3'; // Default audio file path
+    image.addEventListener('click', function() {
+        console.log("Image clicked:", this); // Check if the click event fires
+        const audioFile = this.getAttribute('data-audio') || defaultAudioFile07;
         if (audioFile) {
             const imageAudio = new Audio(audioFile);
             imageAudio.play().catch(error => console.error("Error playing audio:", error));
@@ -531,7 +536,7 @@ document.addEventListener('touchend', handleMouseUp)
         // Handle "Play Music" button click
         playMusicButton.addEventListener("click", () => {
             if (!audio) {
-                audio = new Audio('/06.mp3'); // Replace with your music file URL
+                audio = new Audio('/audio/06.mp3'); // Replace with your music file URL
                 audio.play();
             } else {
                 audio.play();
